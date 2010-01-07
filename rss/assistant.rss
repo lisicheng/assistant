@@ -1,8 +1,9 @@
 NAME ASSI
 
+#include <avkon.rh>
+#include <avkon.rsg>
 #include <eikon.rh>
 #include <eikcore.rsg>
-#include <avkon.rsg>
 
 #include "assistant.hrh"
 
@@ -33,19 +34,19 @@ RESOURCE AVKON_VIEW r_view_settings {
 RESOURCE MENU_BAR r_menubar_main {
 	titles = MENU_TITLE {
 		menu_pane = r_menupane_main;
-	}
+	};
 }
 
 RESOURCE MENU_BAR r_menubar_applist {
 	titles = MENU_TITLE {
 		menu_pane = r_menupane_applist;
-	}
+	};
 }
 
 RESOURCE MENU_BAR r_menubar_settings {
 	titles = MENU_TITLE {
 		menu_pane = r_menupane_settings;
-	}
+	};
 }
 
 RESOURCE MENU_PANE r_menupane_main {
