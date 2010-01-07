@@ -4,6 +4,7 @@
 /.project
 /.settings
 /dist
+/inc/*.mbg
 /inc/*.rsg
 /sis/*.sis
 /sis/*.sisx
