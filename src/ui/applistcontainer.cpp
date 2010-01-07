@@ -118,10 +118,9 @@ CCoeControl* CAppListContainer::ComponentControl(TInt aIndex) const
 void CAppListContainer::HandleResourceChange(TInt aType)
 {
 	CCoeControl::HandleResourceChange(aType);
-	if (aType == KEikDynamicLayoutVariantSwitch) {
+	if (aType == KEikDynamicLayoutVariantSwitch)
 		SetRect(iAvkonViewAppUi->View(TUid::Uid(EViewAppList))
 			->ClientRect());
-	}
 }
 
 void CAppListContainer::HandleListBoxEventL(CEikListBox* /*aListBox*/,
