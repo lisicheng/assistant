@@ -1,0 +1,15 @@
+&ZH
+
+#{"手游助手"}, (0x100098e7), 1, 0, 0
+
+(0x101f7960), 0, 0, 0, {"Series60ProductID"}
+
+"dist/assistant_caption.rsc"
+-"!:\system\apps\assistant\assistant_caption.rsc"
+
+"dist/assistant.rsc"
+-"!:\system\apps\assistant\assistant.rsc"
+
+"dist/assistant.app"
+-"!:\system\apps\assistant\assistant.app"
+

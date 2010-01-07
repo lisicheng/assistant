@@ -1,0 +1,9 @@
+*.d
+*.o
+/.cproject
+/.project
+/.settings
+/dist
+/inc/*.rsg
+/sis/*.sis
+/sis/*.sisx

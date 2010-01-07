@@ -1,0 +1,7 @@
+#include <apcaptionfile.rh>
+#include "assistant.loc"
+
+RESOURCE CAPTION_DATA {
+	caption = qtn_caption;
+	shortcaption = qtn_short_caption;
+}

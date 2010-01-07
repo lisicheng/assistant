@@ -1,0 +1,13 @@
+#include <appinfo.rh>
+#include "assistant_loc_a1986132.rsg"
+
+UID2 KUidAppRegistrationResourceFile
+UID3 0xa1986132
+
+RESOURCE APP_REGISTRATION_INFO {
+	app_file = "assistant_a1986132";
+	localisable_resource_file = "\\resource\\apps\\assistant_loc_a1986132";
+	localisable_resource_id = R_ASSISTANT_LOCALISABLE_APP_INFO;
+	embeddability = KAppNotEmbeddable;
+	newfile = KAppDoesNotSupportNewFile;
+}

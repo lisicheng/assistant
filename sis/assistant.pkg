@@ -1,0 +1,22 @@
+&ZH
+
+#{"手游助手"}, (0xa1986132), 1, 0, 0
+
+%{"随手互动"}
+
+:"troodon"
+
+[0x101f7961], 0, 0, 0, {"Series60ProductID"}
+
+"dist/assistant_a1986132.rsc"
+-"!:\resource\apps\assistant_a1986132.rsc"
+
+"dist/assistant_loc_a1986132.rsc"
+-"!:\resource\apps\assistant_loc_a1986132.rsc"
+
+"dist/assistant_reg_a1986132.rsc"
+-"!:\private\10003a3f\import\apps\assistant_reg_a1986132.rsc"
+
+"dist/assistant_a1986132.exe"
+-"!:\sys\bin\assistant_a1986132.exe"
+

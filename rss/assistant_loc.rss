@@ -1,0 +1,9 @@
+#include <appinfo.rh>
+#include "assistant.loc"
+
+RESOURCE LOCALISABLE_APP_INFO r_assistant_localisable_app_info {
+	short_caption = qtn_short_caption;
+	caption_and_icon = CAPTION_AND_ICON_INFO {
+		caption = qtn_caption;
+	};
+}

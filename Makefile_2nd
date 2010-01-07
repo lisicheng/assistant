@@ -1,0 +1,126 @@
+#
+#   Copyright 2009, Harry Li <harry.li AT pagefreedom.org>
+#   Copyright 2009, Yuan Ye <yuanyelele@gmail.com>
+#
+#   This program is free software: you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation, either version 3 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+GCCPATH = /home/symbian/symbian-gcc
+
+SYSINCPATH = $(EPOCROOT)/epoc32/include
+LANG_MACRO = LANGUAGE_SC
+
+include config_2nd.mk
+
+.PHONY: check clean resource bin build pack install
+
+check:
+	@echo 'EPOCROOT:' $(EPOCROOT)
+	@echo ' GCCPATH:' $(GCCPATH)
+	@echo '    PATH:' $(PATH)
+	@echo '==============================================================='
+
+CXX     = arm-epoc-pe-gcc     # GNU project C and C++ compiler
+LD      = arm-epoc-pe-ld      # The GNU linker
+DLLTOOL = arm-epoc-pe-dlltool # Create files needed to build and use DLLs
+AR      = arm-epoc-pe-ar      # Create, modify, and extract from archives
+AS      = arm-epoc-pe-as      # The portable GNU assembler
+
+ARMIURELPATH = $(EPOCROOT)/epoc32/release/armi/urel
+
+CXXFLAGS = -fomit-frame-pointer -O \
+	-march=armv4t -mthumb-interwork \
+	-pipe -c -nostdinc -Wall -Wno-ctor-dtor-privacy -Wno-unknown-pragmas \
+	-DNDEBUG -D_UNICODE \
+	-D__SYMBIAN32__ -D__GCC32__ -D__EPOC32__ -D__MARM__ -D__MARM_ARMI__ \
+	-D__DLL__ -Iinc -I$(SYSINCPATH)
+
+OBJTARGET = $(patsubst %.cpp,src/%.o,$(SRCFILES))
+RSSTARGET = $(patsubst %.rss,dist/%.rsc,$(RSSFILES))
+BINTARGET = dist/$(PROJECT).$(TARGETTYPE)
+SIS = sis/$(PROJECT)_2nd.sis
+
+clean: check
+	rm -rf dist/*
+	rm -f $(OBJTARGET)
+	rm -f $(patsubst %.cpp,src/%.d,$(SRCFILES))
+	rm -f $(patsubst %.rss,rss/%.d,$(RSSFILES))
+	rm -f inc/*.rsg
+
+include $(patsubst %.cpp,src/%.d,$(SRCFILES))
+include $(patsubst %.rss,rss/%.d,$(RSSFILES))
+
+src/%.d: src/%.cpp
+	$(CXX) -M -MT $@ -MT src/$*.o $(CXXFLAGS) $< > $@
+
+rss/%.d: rss/%.rss
+	$(CXX) -M -MT $@ -MT dist/$*.rsc $(CXXFLAGS) $< > $@
+
+dist/$(PROJECT).in: $(OBJTARGET)
+	$(AR) cr $@ $^
+
+%.inf: %.in
+	$(DLLTOOL) --output-def $@ --as $(AS) --machine arm_interwork \
+		$< $(addprefix $(ARMIURELPATH)/,$(STATICLIBRARY))
+
+%.def: %.inf
+	makedef.pl -Deffile $< -1 NewApplication__Fv $@
+
+%.exp.old: %.def
+	$(DLLTOOL) --input-def $< --output-exp $@ --as $(AS) \
+		--dllname $(PROJECT)[$(UID3)].app --machine arm_interwork
+
+%.bas: %.exp.old %.in
+	$(LD) --entry _E32Dll --output $*.pe.old --strip-all \
+		--undefined _E32Dll --base-file $@ --dll \
+		--whole-archive $*.in --no-whole-archive $*.exp.old \
+		$(addprefix $(ARMIURELPATH)/,edll.lib edllstub.lib) \
+		$(addprefix $(ARMIURELPATH)/,egcc.lib $(STATICLIBRARY) $(LIBRARY))
+
+%.exp: %.def %.bas
+	$(DLLTOOL) --input-def $*.def --base-file $*.bas \
+		--output-exp $@ --as $(AS) --dllname $(PROJECT)[$(UID3)].app \
+		--machine arm_interwork
+
+%.pe: %.exp %.in
+	$(LD) --entry _E32Dll --output $@ --strip-all \
+		--undefined _E32Dll --dll \
+		--whole-archive $*.in --no-whole-archive $*.exp \
+		$(addprefix $(ARMIURELPATH)/,edll.lib edllstub.lib egcc.lib) \
+		$(addprefix $(ARMIURELPATH)/,$(STATICLIBRARY) $(LIBRARY))
+
+$(BINTARGET): dist/$(PROJECT).pe
+	petran -nocall -uid1 0x10000079 -uid2 0x$(UID2) -uid3 0x$(UID3) $< $@
+
+dist/%.rsc inc/%.rsg: rss/%.rss
+	epocrc.pl -Iinc -I$(SYSINCPATH) -D$(LANG_MACRO) -u -v \
+		$< -odist/$*.rsc -hinc/$*.rsg
+
+%.o : %.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $<
+
+%.sis: %.pkg $(RSSTARGET) $(BINTARGET)
+	makesis -v $< $@
+
+resource: check $(RSSTARGET)
+
+bin: check $(BINTARGET)
+
+build: resource bin
+
+pack: $(SIS)
+
+install: $(SIS)
+	bluetooth-sendto $<
+
