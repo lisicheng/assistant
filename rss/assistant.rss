@@ -10,20 +10,59 @@ RESOURCE RSS_SIGNATURE { }
 
 RESOURCE TBUF { }
 
-RESOURCE EIK_APP_INFO {
-	menubar = r_menubar;
+RESOURCE EIK_APP_INFO { }
+
+RESOURCE AVKON_VIEW r_view_splash {
+}
+
+RESOURCE AVKON_VIEW r_view_main {
+	menubar = r_menubar_main;
 	cba = R_AVKON_SOFTKEYS_OPTIONS_EXIT;
 }
 
-RESOURCE MENU_BAR r_menubar {
-	titles = {
-		MENU_TITLE {menu_pane = r_menu;}
+RESOURCE AVKON_VIEW r_view_applist {
+	menubar = r_menubar_applist;
+	cba = R_AVKON_SOFTKEYS_OPTIONS_BACK;
+}
+
+RESOURCE AVKON_VIEW r_view_settings {
+	menubar = r_menubar_settings;
+	cba = R_AVKON_SOFTKEYS_OPTIONS_BACK;
+}
+
+RESOURCE MENU_BAR r_menubar_main {
+	titles = MENU_TITLE {
+		menu_pane = r_menupane_main;
+	}
+}
+
+RESOURCE MENU_BAR r_menubar_applist {
+	titles = MENU_TITLE {
+		menu_pane = r_menupane_applist;
+	}
+}
+
+RESOURCE MENU_BAR r_menubar_settings {
+	titles = MENU_TITLE {
+		menu_pane = r_menupane_settings;
+	}
+}
+
+RESOURCE MENU_PANE r_menupane_main {
+	items = {
+		MENU_ITEM {
+			command = EAknCmdExit;
+			txt = qtn_menuitem_exit;
+		}
 	};
 }
 
-RESOURCE MENU_PANE r_menu {
+RESOURCE MENU_PANE r_menupane_applist {
 	items = {
-		MENU_ITEM {
-		}
+	};
+}
+
+RESOURCE MENU_PANE r_menupane_settings {
+	items = {
 	};
 }
