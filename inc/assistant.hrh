@@ -1,0 +1,11 @@
+#ifndef ASSISTANT_HRH
+#define ASSISTANT_HRH
+
+enum TAssistantView {
+	EViewMain = 0x7000,
+	EViewAppList,
+	EViewSettings,
+	EViewSplash
+};
+
+#endif /* ASSISTANT_HRH */

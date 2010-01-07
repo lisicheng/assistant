@@ -4,6 +4,10 @@
 #include <coecntrl.h> /* CCoeControl */
 #include <eiklbo.h> /* MEikListBoxObserver */
 
+class CAknColumnListBox;
+class CAknSearchField;
+class CDocument;
+
 class CAppListContainer : public CCoeControl, public MEikListBoxObserver {
 public:
 	virtual ~CAppListContainer();
@@ -13,7 +17,7 @@ public:
 					const TRect& aRect);
 public:
 	void AddSelectedItemsL() const;
-private:
+public: // TODO: private
 	CAppListContainer(CDocument& aDocument);
 	void ConstructL(const TRect& aRect);
 private: /* from CCoeControl */
@@ -37,6 +41,6 @@ private:
 	CAknColumnListBox* iListBox;
 	CAknSearchField* iFindBox;
 	CDocument& iDocument;
-}
+};
 
 #endif /* APPLISTCONTAINER_H */

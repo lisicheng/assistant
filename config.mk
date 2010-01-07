@@ -26,7 +26,9 @@ SRCFILES = \
 	framework/application.cpp \
 	framework/appui.cpp \
 	framework/document.cpp \
-	framework/main.cpp
+	framework/main.cpp \
+	ui/applistview.cpp \
+	ui/applistcontainer.cpp
 
 LIBRARY = \
 	euser.lib \

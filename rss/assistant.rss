@@ -22,8 +22,7 @@ RESOURCE AVKON_VIEW r_view_main {
 }
 
 RESOURCE AVKON_VIEW r_view_applist {
-	menubar = r_menubar_applist;
-	cba = R_AVKON_SOFTKEYS_OPTIONS_BACK;
+	cba = R_AVKON_SOFTKEYS_OK_CANCEL;
 }
 
 RESOURCE AVKON_VIEW r_view_settings {
@@ -34,12 +33,6 @@ RESOURCE AVKON_VIEW r_view_settings {
 RESOURCE MENU_BAR r_menubar_main {
 	titles = MENU_TITLE {
 		menu_pane = r_menupane_main;
-	};
-}
-
-RESOURCE MENU_BAR r_menubar_applist {
-	titles = MENU_TITLE {
-		menu_pane = r_menupane_applist;
 	};
 }
 
@@ -55,11 +48,6 @@ RESOURCE MENU_PANE r_menupane_main {
 			command = EAknCmdExit;
 			txt = qtn_menuitem_exit;
 		}
-	};
-}
-
-RESOURCE MENU_PANE r_menupane_applist {
-	items = {
 	};
 }
 

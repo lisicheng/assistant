@@ -1,7 +1,7 @@
 #include "framework/appui.h"
 #include <uikon.hrh>
 #include "symttk/wsenv.h"
-#include "example/mainwidget.h"
+//#include "ui/main.h"
 
 #include "assistant_a1986132.rsg"
 
@@ -13,7 +13,7 @@ CAppUi::~CAppUi()
 void CAppUi::ConstructL()
 {
 	BaseConstructL();
-	iWsEnv = CSymTtkWsEnv::NewL(ApplicationRect());
+	//iWsEnv = CSymTtkWsEnv::NewL(ApplicationRect());
 }
 
 void CAppUi::HandleCommandL(TInt aCommand)

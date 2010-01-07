@@ -1,5 +1,17 @@
 #include "ui/applistcontainer.h"
 
+#include <akniconarray.h>
+#include <aknlists.h>
+#include <aknsfld.h>
+#include <aknview.h>
+#include <aknviewappui.h>
+#include <eikclbd.h>
+
+#include "assistant.hrh"
+#include "assistant.mbg"
+#include "common.h"
+#include "framework/document.h"
+
 CAppListContainer::~CAppListContainer()
 {
 	delete iListBox;
@@ -125,7 +137,7 @@ void CAppListContainer::HandleListBoxEventL(CEikListBox* /*aListBox*/,
 void CAppListContainer::SetupFindBoxL()
 {
 	const TInt KFindBoxTextLength = 10;
-	CGulIcon* icon(NULL)
+	CGulIcon* icon(NULL);
 	iFindBox = CAknSearchField::NewL(*this, CAknSearchField::ESearch,
 					 icon, KFindBoxTextLength);
 	static_cast<CAknFilteredTextListBoxModel*>(iListBox->Model())
