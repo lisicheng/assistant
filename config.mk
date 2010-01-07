@@ -36,4 +36,4 @@ LIBRARY = \
 	gdi.lib \
 	imageconversion.lib \
 	ws32.lib \
-	ttk.lib
+	ttk_a1986131.lib
