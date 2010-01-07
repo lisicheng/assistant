@@ -9,6 +9,14 @@ const TUid KApplicationUid = { 0xa1986132 };
 const TUid KApplicationUid = { 0x100098e7 };
 #endif
 
+#ifdef EKA2
+_LIT(KCacheDir, "\\private\\a1986132\\");
+#else
+_LIT(KCacheDir, "\\system\\apps\\shortcut\\");
+#endif
+
+_LIT(KIconFileName, "image.mbm");
+
 #define LOG(MSG) do {							\
 	RFileLogger logger;						\
 	logger.Connect();						\
