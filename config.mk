@@ -18,6 +18,10 @@ RSSFILES = \
 	$(PROJECT)_reg.rss \
 	$(PROJECT).rss
 
+IMGFILES = \
+	gfx/selectmark.bmp \
+	gfx/nullmark.bmp
+
 SRCFILES = \
 	framework/application.cpp \
 	framework/appui.cpp \

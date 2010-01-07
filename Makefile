@@ -116,6 +116,10 @@ dist/%_$(UID3).rsc inc/%_$(UID3).rsg: rss/%.rss
 	epocrc.pl -Iinc -I$(SYSINCPATH) -D$(LANG) -u -v \
 		$< -odist/$*_$(UID3).rsc -hinc/$*_$(UID3).rsg
 
+dist/image.mbm inc/$(PROJECT).mbg : $(IMGFILES) $(subst .bmp,_mask.bmp,$(IMGFILES))
+	bmconv /hinc/$(PROJECT).mbg dist/image.mbm \
+		$(foreach I,$(IMGFILES),/c24$(I) /1$(subst .bmp,_mask.bmp,$(I)))
+
 %.o : %.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $<
 
@@ -127,9 +131,11 @@ dist/%_$(UID3).rsc inc/%_$(UID3).rsg: rss/%.rss
 
 resource: check $(RSSTARGET)
 
+image: check dist/image.mbm
+
 bin: check $(BINTARGET)
 
-build: resource bin
+build: resource image bin
 
 pack: $(SISX)
 
