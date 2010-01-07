@@ -11,14 +11,12 @@ class CDocument;
 class CAppListContainer : public CCoeControl, public MEikListBoxObserver {
 public:
 	virtual ~CAppListContainer();
-	static CAppListContainer* NewL(CDocument& aDocument,
-				       const TRect& aRect);
-	static CAppListContainer* NewLC(CDocument& aDocument,
-					const TRect& aRect);
+	static CAppListContainer* NewL(const TRect& aRect);
+	static CAppListContainer* NewLC(const TRect& aRect);
 public:
 	void AddSelectedItemsL() const;
 public: // TODO: private
-	CAppListContainer(CDocument& aDocument);
+	CAppListContainer();
 	void ConstructL(const TRect& aRect);
 private: /* from CCoeControl */
 	TKeyResponse OfferKeyEventL(const TKeyEvent& aKeyEvent,

@@ -18,18 +18,16 @@ CAppListContainer::~CAppListContainer()
 	delete iFindBox;
 }
 
-CAppListContainer* CAppListContainer::NewL(CDocument& aDocument,
-					   const TRect& aRect)
+CAppListContainer* CAppListContainer::NewL(const TRect& aRect)
 {
-	CAppListContainer* self = CAppListContainer::NewLC(aDocument, aRect);
+	CAppListContainer* self = CAppListContainer::NewLC(aRect);
 	CleanupStack::Pop(self);
 	return self;
 }
 
-CAppListContainer* CAppListContainer::NewLC(CDocument& aDocument,
-					    const TRect& aRect)
+CAppListContainer* CAppListContainer::NewLC(const TRect& aRect)
 {
-	CAppListContainer* self = new (ELeave) CAppListContainer(aDocument);
+	CAppListContainer* self = new (ELeave) CAppListContainer();
 	CleanupStack::PushL(self);
 	self->ConstructL(aRect);
 	return self;
@@ -51,8 +49,8 @@ void CAppListContainer::AddSelectedItemsL() const
 	}
 }
 
-CAppListContainer::CAppListContainer(CDocument& aDocument)
-	: iDocument(aDocument)
+CAppListContainer::CAppListContainer()
+	: iDocument(*static_cast<CDocument*>(iAvkonAppUi->Document()))
 {
 }
 

@@ -63,8 +63,7 @@ void CAppListView::DoActivateL(const TVwsViewId& /*aPrevViewId*/,
 {
 	// 必须在ConstructL之前调用SetMopParent而不能直接调用NewL，否则无法
 	// 显示滚动条 TODO: really?
-	iContainer = new(ELeave) CAppListContainer(
-		*static_cast<CDocument*>(AppUi()->Document()));
+	iContainer = new(ELeave) CAppListContainer();
 	iContainer->SetMopParent(this);
 	iContainer->ConstructL(ClientRect());
 	AppUi()->AddToStackL(*this, iContainer);
