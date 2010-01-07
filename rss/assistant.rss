@@ -13,8 +13,7 @@ RESOURCE TBUF { }
 
 RESOURCE EIK_APP_INFO { }
 
-RESOURCE AVKON_VIEW r_view_splash {
-}
+RESOURCE AVKON_VIEW r_view_splash { }
 
 RESOURCE AVKON_VIEW r_view_main {
 	menubar = r_menubar_main;
@@ -53,5 +52,17 @@ RESOURCE MENU_PANE r_menupane_main {
 
 RESOURCE MENU_PANE r_menupane_settings {
 	items = {
+		MENU_ITEM {
+			command = ECmdChange;
+			txt = qtn_menuitem_change;
+		},
+		MENU_ITEM {
+			command = EAknCmdExit;
+			txt = qtn_menuitem_exit;
+		}
 	};
 }
+
+#include "assistant_settings.rssi"
+#include "assistant_dialog.rssi"
+

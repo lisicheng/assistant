@@ -27,8 +27,10 @@ SRCFILES = \
 	framework/appui.cpp \
 	framework/document.cpp \
 	framework/main.cpp \
+	ui/settingsview.cpp \
 	ui/applistview.cpp \
-	ui/applistcontainer.cpp
+	ui/applistcontainer.cpp \
+	ui/settingscontainer.cpp
 
 LIBRARY = \
 	euser.lib \

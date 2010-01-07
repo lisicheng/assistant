@@ -1,11 +1,21 @@
 #ifndef ASSISTANT_HRH
 #define ASSISTANT_HRH
 
+enum TShortcutCommand {
+	ECmdChange = 0x6000
+};
+
 enum TAssistantView {
 	EViewMain = 0x7000,
 	EViewAppList,
 	EViewSettings,
 	EViewSplash
+};
+
+enum TShortcutSettingsList {
+	ESettingVisibilityHotkey,
+	ESettingRunHotkey,
+	ESettingSaveTo
 };
 
 #endif /* ASSISTANT_HRH */
