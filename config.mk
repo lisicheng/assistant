@@ -24,11 +24,13 @@ IMGFILES = \
 
 SRCFILES = \
 	framework/application.cpp \
-	framework/appui.cpp \
 	framework/document.cpp \
 	framework/main.cpp \
+	ui/mainview.cpp \
+	ui/maincontainer.cpp \
 	model/appitem.cpp \
 	model/appmanager.cpp \
+	framework/appui.cpp \
 	ui/settingsview.cpp \
 	ui/applistview.cpp \
 	ui/applistcontainer.cpp \
