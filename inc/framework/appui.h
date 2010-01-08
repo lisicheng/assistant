@@ -1,12 +1,14 @@
 #ifndef APPUI_H
 #define APPUI_H
 
-#include <eikappui.h> /* CEikAppUi */
+#include <aknviewappui.h> /* CAknViewAppUi */
 
-class CSymTtkWsEnv;
-class TtkWidget;
+class CAppListView;
+class CMainView;
+class CSettingsView;
+class CSplashView;
 
-class CAppUi : public CEikAppUi
+class CAppUi : public CAknViewAppUi
 {
 public:
 	virtual ~CAppUi();
@@ -15,7 +17,10 @@ private:
 private: /* from CEikAppUi */
 	void HandleCommandL(TInt aCommand);
 private:
-	CSymTtkWsEnv* iWsEnv;
+	CAppListView* iAppListView;
+	CMainView* iMainView;
+	CSettingsView* iSettingsView;
+	CSplashView* iSplashView;
 };
 
 #endif /* APPUI_H */

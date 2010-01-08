@@ -1,19 +1,33 @@
 #include "framework/appui.h"
-#include <uikon.hrh>
-#include "symttk/wsenv.h"
-//#include "ui/main.h"
 
-#include "assistant_a1986132.rsg"
+#include "ui/applistview.h"
+#include "ui/mainview.h"
+#include "ui/settingsview.h"
+#include "ui/splashview.h"
 
 CAppUi::~CAppUi()
 {
-	delete iWsEnv;
+	delete iAppListView;
+	delete iMainView;
+	delete iSettingsView;
+	delete iSplashView;
 }
 
 void CAppUi::ConstructL()
 {
-	BaseConstructL();
-	//iWsEnv = CSymTtkWsEnv::NewL(ApplicationRect());
+	BaseConstructL(EAknEnableSkin);
+
+	iAppListView = CAppListView::NewL();
+	AddViewL(iAppListView);
+
+	iMainView = CMainView::NewL();
+	AddViewL(iMainView);
+
+	iSettingsView = CSettingsView::NewL();
+	AddViewL(iSettingsView);
+
+	iSplashView = CSplashView::NewL();
+	AddViewL(iSplashView);
 }
 
 void CAppUi::HandleCommandL(TInt aCommand)
@@ -21,6 +35,8 @@ void CAppUi::HandleCommandL(TInt aCommand)
 	switch (aCommand) {
 	case EEikCmdExit:
 		Exit();
+		break;
+	default:
 		break;
 	}
 }
