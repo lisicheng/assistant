@@ -20,7 +20,8 @@ RSSFILES = \
 
 IMGFILES = \
 	gfx/selectmark.bmp \
-	gfx/nullmark.bmp
+	gfx/nullmark.bmp \
+	gfx/default.bmp
 
 SRCFILES = \
 	framework/application.cpp \

@@ -46,6 +46,7 @@ const TDesC& CAppManager::CaptionL(TUid aUid)
 	return *iCaption;
 }
 
+//TODO: dirty
 CGulIcon* CAppManager::IconL(TUid aUid, TSize aSize) const
 {
 #ifndef EKA2

@@ -92,7 +92,7 @@ void CAppItem::ConstructL(TUid aUid)
 	CDocument& document = *static_cast<CDocument*>(iAvkonAppUi->Document());
 	delete iCaption;
 	iCaption = NULL;
-	iCaption = document.AppCaptionL(aUid);
+	iCaption = document.AppCaptionL(aUid).AllocL(); //TODO: bad
 }
 
 void CAppItem::ConstructL(const CIniFile& aIniFile, TInt aIndex)
