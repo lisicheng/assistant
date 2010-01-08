@@ -18,6 +18,7 @@ _LIT(KCacheDir, "\\system\\apps\\shortcut\\");
 _LIT(KIconFileName, "image.mbm");
 
 const TInt KDefaultGranularity = 3;
+const TInt KUidLength = 8;
 
 #define LOG(MSG) do {							\
 	RFileLogger logger;						\

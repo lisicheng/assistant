@@ -27,6 +27,7 @@ SRCFILES = \
 	framework/appui.cpp \
 	framework/document.cpp \
 	framework/main.cpp \
+	model/appitem.cpp \
 	model/appmanager.cpp \
 	ui/settingsview.cpp \
 	ui/applistview.cpp \
